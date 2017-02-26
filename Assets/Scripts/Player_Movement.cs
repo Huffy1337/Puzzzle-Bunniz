@@ -12,19 +12,34 @@ public class Player_Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Vector2 objectPosition = transform.position;
+        Vector3 objectPosition = transform.position;
 
         //Move Horizontal
         if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0) 
         {
-            objectPosition.x = transform.position.x + 320;
+            objectPosition.x = objectPosition.x + 3.20f;
+            transform.position = objectPosition;
             Debug.Log("Right");
+
         } else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0) {
+            objectPosition.x = objectPosition.x - 3.20f;
+            transform.position = objectPosition;
             Debug.Log("Left");
         }
 
         //Move Vertical
-
+        if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") > 0)
+        {
+            objectPosition.y = objectPosition.y + 3.20f;
+            transform.position = objectPosition;
+            Debug.Log("Up");
+        }
+        else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") < 0)
+        {
+            objectPosition.y = objectPosition.y - 3.20f;
+            transform.position = objectPosition;
+            Debug.Log("Down");
+        }
 
     }
 }
