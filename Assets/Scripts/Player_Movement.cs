@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour {
 
+    RaycastHit2D hit;
+    RaycastHit testhit;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -18,12 +21,30 @@ public class Player_Movement : MonoBehaviour {
         if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0) 
         {
             objectPosition.x = objectPosition.x + 3.20f;
-            transform.position = objectPosition;
+            //Cast a raycast infront of the object, if hit don't move
+            hit = Physics2D.Raycast(objectPosition, Vector3.forward);
+            if (hit)
+            {
+                Debug.Log("It's a hit!");
+            } else
+            {
+                transform.position = objectPosition;
+            }
+            
             Debug.Log("Right");
 
         } else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0) {
             objectPosition.x = objectPosition.x - 3.20f;
-            transform.position = objectPosition;
+            hit = Physics2D.Raycast(objectPosition, Vector3.forward);
+            if (hit)
+            {
+                Debug.Log("It's a hit!");
+            }
+            else
+            {
+                transform.position = objectPosition;
+            }
+
             Debug.Log("Left");
         }
 
@@ -31,13 +52,31 @@ public class Player_Movement : MonoBehaviour {
         if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") > 0)
         {
             objectPosition.y = objectPosition.y + 3.20f;
-            transform.position = objectPosition;
+            hit = Physics2D.Raycast(objectPosition, Vector3.forward);
+            if (hit)
+            {
+                Debug.Log("It's a hit!");
+            }
+            else
+            {
+                transform.position = objectPosition;
+            }
+
             Debug.Log("Up");
         }
         else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") < 0)
         {
             objectPosition.y = objectPosition.y - 3.20f;
-            transform.position = objectPosition;
+            hit = Physics2D.Raycast(objectPosition, Vector3.forward);
+            if (hit)
+            {
+                Debug.Log("It's a hit!");
+            }
+            else
+            {
+                transform.position = objectPosition;
+            }
+
             Debug.Log("Down");
         }
 
